@@ -6,6 +6,11 @@ def validate_ip(ip):
     for part in parts:
          if not part.isdigit():
             return False
+    
+         number = int(part)
+         if number < 0 or number > 255:
+            return False
+
     return True
 
 
@@ -32,7 +37,11 @@ def main():
             print("Validera IP-adress")
             ip = input("Ange en IP-adress: ")
             result = validate_ip(ip)
-            print(result)
+            if result:
+                print(f"{ip} är en giltig IP-adress. ")
+            else:
+                print(f"{ip} är inte en giltig IP-adress. ")
+                
             
 
         elif choice == 2:

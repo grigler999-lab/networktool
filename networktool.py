@@ -47,6 +47,18 @@ def main():
         elif choice == 2:
             print("Validera port")
             port = input("Ange en port: ")
+            
+            if not port.isdigit():
+                print("ogiltig port")
+                continue
+            
+            number = int(port)
+            
+            if number < 1 or number > 65535:
+                print("Ogiltig port")
+            else:
+                print("Giltig port")
+
 
         elif choice == 3:
             print("Visa logg")

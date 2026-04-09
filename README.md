@@ -1,10 +1,21 @@
 # Network Tool
 
-This project is a simple network tool written in Python and C.
+Detta projekt är ett enkelt nätverksverktyg skrivet i Python.
+Verktyget används för att validera IP-adresser och portar samt spara resultaten i en logg.
 
-It can:
-- Validate IP addresses
-- Validate ports
-- Show a log of validations
+## Funktioner
+- Validera IP-adresser
+- Validera portar
+- Visa en logg över valideringar
 
+## Hur programmet fungerar
+Programmet använder en meny där användaren kan välja olika alternativ.
+När en IP-adress eller port valideras sparas resultatet i en lista (logg).
+Loggen kan sedan visas i programmet.
+
+## Reflektion
+(kommer att fyllas i senare)
+
+## Jämförelse mellan C och Python
+(kommer att fyllas i senare)
 

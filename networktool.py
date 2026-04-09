@@ -27,7 +27,7 @@ def main():
         print("3. Visa logg")
         print("4. Avsluta")
         try:
-            choice = int(input("Välj ett alternativ: "))
+            choice = int(input("Välj ett alternativ: ").strip())
         except ValueError:
             print("Ogiltigt val. Välj ett nummer från listan.")
             continue
@@ -36,7 +36,7 @@ def main():
             continue
         elif choice == 1:
             print("Validera IP-adress")
-            ip = input("Ange en IP-adress: ")
+            ip = input("Ange en IP-adress: ").strip()
             result = validate_ip(ip)
             if result:
                 message = f"IP {ip} - giltig"
@@ -49,7 +49,7 @@ def main():
 
         elif choice == 2:
             print("Validera port")
-            port = input("Ange en port: ")
+            port = input("Ange en port: ").strip()
             
             if not port.isdigit():
                 message = f"Port {port} - ogiltig"

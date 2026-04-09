@@ -1,3 +1,4 @@
+
 def validate_ip(ip):
     parts = ip.split(".")
     if len(parts) != 4:
@@ -17,7 +18,7 @@ def validate_ip(ip):
 
 
 def main():
-
+    log = []
     running = True
     while running:
         print("= NÄTVERKSVERKTYG =")
@@ -38,10 +39,12 @@ def main():
             ip = input("Ange en IP-adress: ")
             result = validate_ip(ip)
             if result:
-                print(f"{ip} är en giltig IP-adress. ")
+                message = f"IP {ip} - giltig"
             else:
-                print(f"{ip} är inte en giltig IP-adress. ")
-                
+                message = f"IP {ip} - ogiltig"
+
+            print(message)
+            log.append(message)   
             
 
         elif choice == 2:
@@ -49,21 +52,29 @@ def main():
             port = input("Ange en port: ")
             
             if not port.isdigit():
-                print("ogiltig port")
+                message = f"Port {port} - ogiltig"
+                print(message)
+                log.append(message)
                 continue
             
             number = int(port)
             
             if number < 1 or number > 65535:
-                print("Ogiltig port")
+                message = f"Port {port} - ogiltig"
             else:
-                print("Giltig port")
+                message = f"Port {port} - giltig"
+
+            print(message)
+            log.append(message)
 
 
         elif choice == 3:
-            print("Visa logg")
+            print("= LOGG =")
+            for i, entry in enumerate(log, start=1):
+                print(f"{i}. {entry}")
 
         elif choice == 4:
+            print(f"Totalt antal valideringar: {len(log)}")
             print("Avslutar...")
             break
 

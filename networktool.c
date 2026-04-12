@@ -7,6 +7,7 @@ int validate_ip(char ip[]) {
     int dots = 0;
     int num = 0;
     int digits = 0;
+    
 
     if (ip == NULL || ip[0] == '\0') {
         return 0;
@@ -77,6 +78,8 @@ int main() {
     int running = 1;
     char ip[50];
     char port[20];
+    char log[100][100];
+    int log_count = 0;
     
     while (running) {
         printf("= NÄTVERKSVERKTYG =\n");
@@ -94,28 +97,41 @@ int main() {
         }
         if (choice == 1) {
             printf("Ange en IP-adress: ");
-            scanf("%s", ip);
+            scanf("%49s", ip);
+
             if (validate_ip(ip)) {
-                printf("IP-adressen är giltig.\n");
+                printf("IP %s - giltig\n", ip);
+                snprintf(log[log_count], 100, "IP %s - giltig", ip);
             } else {
-                printf("IP-adressen är ogiltig.\n");
+                printf("IP %s - ogiltig\n", ip);
+                snprintf(log[log_count], 100, "IP %s - ogiltig", ip);
             }
-        } 
+            
+                log_count++;
+                
+            }       
         else if (choice == 2) {
             printf("Ange en port: ");
             scanf("%19s", port);
-
+        
         if (validate_port(port)) {
             printf("Porten är giltig.\n");
+            snprintf(log[log_count], 100, "Port %s - giltig", port);
         } else {
             printf("Porten är ogiltig.\n");
+            snprintf(log[log_count], 100, "Port %s - ogiltig", port);
         }
-
-        } 
+        log_count++; 
+        
+        }
         else if (choice == 3) {
-            printf("Visar logg\n");
+            printf("= LOGG =\n");
+            for (int i = 0; i < log_count; i++) {
+                printf("%d. %s\n", i + 1, log[i]);
+            }
         } 
         else if (choice == 4) {
+            printf("Totalt antal valideringar: %d\n", log_count);
             printf("Avslutar programmet\n");
             running = 0;
         } 

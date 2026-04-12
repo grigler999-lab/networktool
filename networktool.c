@@ -1,6 +1,52 @@
 #include <stdio.h>
 #include <string.h>
 
+int validate_ip(char ip[]) {
+    int dots = 0;
+    int num = 0;
+    int digits = 0;
+
+    if (ip == NULL || ip[0] == '\0') {
+        return 0;
+    }
+
+    for (int i = 0; ip[i] != '\0'; i++) {
+        char c = ip[i];
+
+        if (c >= '0' && c <= '9') {
+            num = num * 10 + (c - '0');
+            digits++;
+
+            if (num > 255) {
+                return 0;
+            }
+        }
+        else if (c == '.') {
+            if (digits == 0) {
+                return 0;   
+            }
+
+            dots++;
+            if (dots > 3) {
+                return 0;
+            }
+
+            num = 0;
+            digits = 0;
+        }
+        else {
+            return 0;      
+        }
+    }
+
+    if (dots != 3 || digits == 0) {
+        return 0;           
+    }
+
+    return 1;
+}
+
+
 int main() {
     int choice;
     int running = 1;
@@ -23,7 +69,11 @@ int main() {
         if (choice == 1) {
             printf("Ange en IP-adress: ");
             scanf("%s", ip);
-            printf("Du skrev: %s\n", ip);
+            if (validate_ip(ip)) {
+                printf("IP-adressen är giltig.\n");
+            } else {
+                printf("IP-adressen är ogiltig.\n");
+            }
         } 
         else if (choice == 2) {
             printf("Valde port-validering\n");

@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
+
 
 int validate_ip(char ip[]) {
     int dots = 0;
@@ -47,10 +49,34 @@ int validate_ip(char ip[]) {
 }
 
 
+int validate_port(char port[]) {
+    int i = 0;
+
+    if (port == NULL || port[0] == '\0') {
+        return 0;
+    }
+
+    while (port[i] != '\0') {
+        if (port[i] < '0' || port[i] > '9') {
+            return 0;
+        }
+        i++;
+    }
+
+    int num = atoi(port);
+
+    if (num < 1 || num > 65535) {
+        return 0;
+    }
+
+    return 1;
+}
+
 int main() {
     int choice;
     int running = 1;
     char ip[50];
+    char port[20];
     
     while (running) {
         printf("= NÄTVERKSVERKTYG =\n");
@@ -76,7 +102,15 @@ int main() {
             }
         } 
         else if (choice == 2) {
-            printf("Valde port-validering\n");
+            printf("Ange en port: ");
+            scanf("%19s", port);
+
+        if (validate_port(port)) {
+            printf("Porten är giltig.\n");
+        } else {
+            printf("Porten är ogiltig.\n");
+        }
+
         } 
         else if (choice == 3) {
             printf("Visar logg\n");
